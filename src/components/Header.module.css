@@ -1,0 +1,14 @@
+.header {
+  /* No css modules sempre utilizamos o seletor de classe */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: var(--gray-800);
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0;
+
+  img {
+    height: 32px;
+  }
+}
