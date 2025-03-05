@@ -10,5 +10,10 @@
 
   img {
     height: 32px;
+    transition: transform 300ms;
+
+    &:hover {
+      transform: rotate(-20deg);
+    }
   }
 }

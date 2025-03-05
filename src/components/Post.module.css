@@ -100,11 +100,6 @@
     }
   }
 
-  footer {
-    visibility: hidden;
-    max-height: 0;
-  }
-
   button {
     padding: 1rem 1.5rem;
     margin-top: 1rem;
@@ -121,9 +116,16 @@
     }
   }
 }
-
+.commentForm footer {
+  visibility: hidden;
+  max-height: 0;
+}
 .commentForm:focus-within footer {
   /* Se houver qualquer focus em qualquer tipo de input do "commentForm, aplique essa estilização ao footer... */
   visibility: visible;
   max-height: none;
+}
+
+.commentList {
+  margin-top: 2rem;
 }

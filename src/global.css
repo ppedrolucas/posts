@@ -10,6 +10,8 @@
 
   --green-300: #00b37e;
   --green-500: #08875f;
+
+  --red-500: #F75A68;
 }
 :focus {
   outline: transparent;
@@ -37,4 +39,5 @@ button {
 
 a {
   text-decoration: none;
+  transition-duration: 300ms;
 }
