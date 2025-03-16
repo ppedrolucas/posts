@@ -1,37 +1,46 @@
+import { format, formatDistanceToNow } from "date-fns";
+import ptBR from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-export function Post() {
+export function Post({ author, publishedAt, content }) {
+  const publishedAtDateFormatted = format(
+    publishedAt,
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBR }
+  );
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    locale: ptBR,
+    addSuffix: true,
+  });
+
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/ppedrolucas.png" />
+          <Avatar src={author.avatar_url} />
           <div className={styles.authorInfo}>
-            <strong>Pedro Lucas</strong>
-            <span>Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
-        <time title="03 de Fevereiro às 7:45h" dateTime="2024-02-03 12:53:30">
-          Publicado há 1h
+        <time
+          title={publishedAtDateFormatted}
+          dateTime={publishedAt.toISOString()}
+        >
+          {publishedDateRelativeToNow}
         </time>
       </header>
       <div className={styles.content}>
-        <p>Fala galeraa 👋</p>
-
-        <p>
-          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
-          no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
-        </p>
-
-        <p>
-          <a href="#">👉 jane.design/doctorcare</a>
-        </p>
-
-        <p>
-          <a href="#">#novoprojeto #nlw #rocketseat</a>
-        </p>
+        {content.map((line) => {
+          if (line.type === "paragraph") {
+            return <p>{line.content}</p>;
+          }else if(line.type === 'link'){
+            return <p><a href="#">{line.content}</a></p>
+          }
+        })}
       </div>
 
       <form className={styles.commentForm}>
